@@ -8,4 +8,8 @@ app.add_url_rule(rule='/robot/', # WeRoBot 挂载地址
                  view_func=make_view(myrobot),
                  methods=['GET', 'POST'])
 
+@app.route('/')
+def check_health():
+    return 'success'
+
 app.run(host='0.0.0.0', port=80, debug=False)

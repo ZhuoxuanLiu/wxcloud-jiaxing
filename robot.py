@@ -11,8 +11,6 @@ from werobot import WeRoBot
 config = Config(
    SERVER="auto",
    TOKEN="ai4e",
-   HOST="0.0.0.0",
-   PORT="80",
    APP_ID=app_id,
    APP_SECRET=app_secret,
 )
