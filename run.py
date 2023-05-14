@@ -1,28 +1,9 @@
-import configparser
+from flask import Flask
+from robot import myrobot
+from werobot.contrib.flask import make_view
 
-conf = configparser.ConfigParser()
-conf.read('chatinfo.conf', encoding="utf-8")
-app_id = conf.get("chatinfo", "app_id")
-app_secret = conf.get("chatinfo", "app_secret")
-
-from werobot.config import Config
-from werobot import WeRoBot
-
-config = Config(
-   SERVER="auto",
-   TOKEN="ai4e",
-   HOST="0.0.0.0",
-   PORT="80",
-   APP_ID=app_id,
-   APP_SECRET=app_secret,
-)
-
-robot = WeRoBot(config=config)
-
-
-@robot.handler
-def hello(message):
-    return 'Hello World!'
-
-if __name__ == '__main__':
-    robot.run()
+app = Flask(__name__)
+app.add_url_rule(rule='/robot/', # WeRoBot 挂载地址
+                 endpoint='werobot', # Flask 的 endpoint
+                 view_func=make_view(myrobot),
+                 methods=['GET', 'POST'])
