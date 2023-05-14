@@ -7,3 +7,5 @@ app.add_url_rule(rule='/robot/', # WeRoBot 挂载地址
                  endpoint='werobot', # Flask 的 endpoint
                  view_func=make_view(myrobot),
                  methods=['GET', 'POST'])
+
+app.run(host='0.0.0.0', port=80, debug=False)
